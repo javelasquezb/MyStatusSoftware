@@ -1,10 +1,15 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyStatusSoftware.Data;
+using MyStatusSoftware.Data.Repositories;
+using MyStatusSoftware.Data.Repositories.IRepositories;
+using MyStatusSoftware.Logics.Account;
 
 namespace MyStatusSoftware.WebAdministrator
 {
@@ -20,6 +25,14 @@ namespace MyStatusSoftware.WebAdministrator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
             services.AddDbContext<DataContext>(cfg =>
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
@@ -29,6 +42,12 @@ namespace MyStatusSoftware.WebAdministrator
                     });
             });
             services.AddTransient<SeedDb>();
+            //Inyeccion de dependencia de Repositorios
+            services.AddScoped<IUserRepository,UserRepository>();
+            //Inyeccion de dependencia de Logicas
+            services.AddScoped<IAccountManager,AccountManager>();
+
+
             services.AddControllersWithViews();
         }
 
@@ -46,17 +65,24 @@ namespace MyStatusSoftware.WebAdministrator
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
+            app.UseCookiePolicy(new CookiePolicyOptions()
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict
+            });
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Authentication}/{action=Login}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

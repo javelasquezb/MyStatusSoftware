@@ -1,4 +1,4 @@
-﻿namespace MyStatusSoftware.WebAdministrator.Models.Authentication
+﻿namespace MyStatusSoftware.WebAdministrator.Models.Account
 {
     public class LoginViewModel
     {

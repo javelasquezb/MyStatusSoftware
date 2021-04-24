@@ -4,7 +4,7 @@
 
 Authentication.URL_PageHome = "/Home/Index";
 
-Authentication.URL_ActionLogin = "/Authentication/Login";
+Authentication.URL_ActionLogin = "/Account/Login";
 
 
 Authentication.RedirectToHome = function () {
@@ -19,6 +19,7 @@ Authentication.Login = function () {
     };
 
     $.post(Authentication.URL_ActionLogin, userLogin, function (result) {
+        console.log(result);
         if (result.success != undefined) {
             if (result.success) {
                 Authentication.RedirectToHome();
