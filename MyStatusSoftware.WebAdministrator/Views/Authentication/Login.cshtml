@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="~/adminlte/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="~/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="~/adminlte/dist/css/adminlte.min.css">
+    <link href="~/adminlte/plugins/sweetalert2/sweetalert2.css" rel="stylesheet" />
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
@@ -22,41 +23,37 @@
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-
-                <form action="../../index3.html" method="post">
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
+                <div class="input-group mb-3">
+                    <input type="email" id="Email" name="Email" class="form-control" placeholder="Email o Nombre de Usuario">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="Remember" name="Remember">
+                            <label for="Remember">
+                                Remember Me
+                            </label>
                         </div>
-                        <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                        </div>
-                        <!-- /.col -->
                     </div>
-                </form>
-
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary btn-block" onclick="Authentication.Login();">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
                 <p class="mb-1">
                     <a href="forgot-password.html">I forgot my password</a>
                 </p>
@@ -69,6 +66,10 @@
     <script src="~/adminlte/plugins/jquery/jquery.min.js"></script>
     <script src="~/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/adminlte/dist/js/adminlte.min.js"></script>
+    <script src="~/js/waitingfor.js"></script>
+    <script src="~/adminlte/plugins/sweetalert2/sweetalert2.js"></script>
+    <script src="~/app/app.js"></script>
+    <script src="~/app/authentication.js"></script>
 </body>
 </html>
 

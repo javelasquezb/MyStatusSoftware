@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="~/adminlte/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="~/adminlte/dist/css/adminlte.min.css">
+    <link href="~/adminlte/plugins/sweetalert2/sweetalert2.css" rel="stylesheet" />
 </head>
 <body>
     <div class="wrapper">
@@ -48,11 +49,14 @@
         <partial name="_Footer" />
     </div>
 
-    
+
 
     <script src="~/adminlte/plugins/jquery/jquery.min.js"></script>
     <script src="~/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/adminlte/dist/js/adminlte.min.js"></script>
+    <script src="~/js/waitingfor.js"></script>
+    <script src="~/adminlte/plugins/sweetalert2/sweetalert2.js"></script>
+    <script src="~/app/app.js"></script>
     @await RenderSectionAsync("Scripts",required: false)
 </body>
 </html>
