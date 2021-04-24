@@ -12,9 +12,11 @@ namespace MyStatusSoftware.Data.Entities
 
         bool IsEnable { get; set; }
 
-        DateTime UpdateDate { get; set; }
+        DateTime? UpdateDate { get; set; }
 
-        int UpdateUser { get; set; }
+        int? UpdateUser { get; set; }
+
+        DateTime DateOrdering { get; set; }
 
     }
 }
